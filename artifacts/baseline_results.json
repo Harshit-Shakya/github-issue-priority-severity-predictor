@@ -1,0 +1,11 @@
+{
+  "model": "TF-IDF + Logistic Regression",
+  "priority": {
+    "val_f1": 0.7466994535707443,
+    "test_f1": 0.7432700121229158
+  },
+  "severity": {
+    "val_f1": 0.7617917115129524,
+    "test_f1": 0.7624083795598745
+  }
+}

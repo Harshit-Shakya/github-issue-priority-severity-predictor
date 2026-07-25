@@ -1,0 +1,62 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "github-issues-dataset",
+  "dataset_size": 307526131,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/sharjeelyunus/github-issues-dataset@f63092147cf2a7d1e05e2af0cb8527487b88ca87/github_issues_dataset.parquet": {
+      "num_bytes": 138948920,
+      "checksum": null
+    }
+  },
+  "download_size": 138948920,
+  "features": {
+    "id": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "repo": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "title": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "body": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "labels": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "priority": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "severity": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 446475051,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 307526131,
+      "num_examples": 114073,
+      "dataset_name": "github-issues-dataset"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
