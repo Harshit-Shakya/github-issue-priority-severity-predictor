@@ -138,26 +138,31 @@ model, tokenizer, device = load_model()
 if model is not None:
     st.write("---")
     
-    # Input fields
-    title = st.text_input("Issue Title", placeholder="e.g., Bug: Application crashes on startup")
-    body = st.text_area("Issue Body", placeholder="Describe the issue in detail...", height=150)
+    # Input fields with persistent state
+    if 'title' not in st.session_state:
+        st.session_state.title = ''
+    if 'body' not in st.session_state:
+        st.session_state.body = ''
+
+    title = st.text_input("Issue Title", placeholder="e.g., Bug: Application crashes on startup", key='title')
+    body = st.text_area("Issue Body", placeholder="Describe the issue in detail...", height=150, key='body')
     
     # Example issues
     with st.expander("Try Example Issues"):
         if st.button("Example 1: Critical Bug"):
-            title = "Application crashes on startup"
-            body = "The application crashes immediately after launching. Error message: 'Segmentation fault'. This affects all users on Linux."
-            st.rerun()
+            st.session_state.title = "Application crashes on startup"
+            st.session_state.body = "The application crashes immediately after launching. Error message: 'Segmentation fault'. This affects all users on Linux."
+            st.experimental_rerun()
         
         if st.button("Example 2: Feature Request"):
-            title = "Add dark mode support"
-            body = "It would be great to have a dark mode option for better usability at night."
-            st.rerun()
+            st.session_state.title = "Add dark mode support"
+            st.session_state.body = "It would be great to have a dark mode option for better usability at night."
+            st.experimental_rerun()
         
         if st.button("Example 3: Documentation"):
-            title = "Update installation instructions"
-            body = "The installation guide is outdated. Please update it to reflect the new setup process."
-            st.rerun()
+            st.session_state.title = "Update installation instructions"
+            st.session_state.body = "The installation guide is outdated. Please update it to reflect the new setup process."
+            st.experimental_rerun()
     
     # Predict button
     if st.button("Predict", type="primary"):
