@@ -92,6 +92,11 @@ def load_model():
     
     return model, tokenizer, device
 
+# Example callbacks
+def set_example(title_value, body_value):
+    st.session_state.title = title_value
+    st.session_state.body = body_value
+
 # Prediction function
 def predict(title, body, model, tokenizer, device):
     text = combine_title_body(title, body)
@@ -144,25 +149,38 @@ if model is not None:
     if 'body' not in st.session_state:
         st.session_state.body = ''
 
-    title = st.text_input("Issue Title", placeholder="e.g., Bug: Application crashes on startup", key='title')
-    body = st.text_area("Issue Body", placeholder="Describe the issue in detail...", height=150, key='body')
-    
     # Example issues
     with st.expander("Try Example Issues"):
-        if st.button("Example 1: Critical Bug"):
-            st.session_state.title = "Application crashes on startup"
-            st.session_state.body = "The application crashes immediately after launching. Error message: 'Segmentation fault'. This affects all users on Linux."
-            st.experimental_rerun()
-        
-        if st.button("Example 2: Feature Request"):
-            st.session_state.title = "Add dark mode support"
-            st.session_state.body = "It would be great to have a dark mode option for better usability at night."
-            st.experimental_rerun()
-        
-        if st.button("Example 3: Documentation"):
-            st.session_state.title = "Update installation instructions"
-            st.session_state.body = "The installation guide is outdated. Please update it to reflect the new setup process."
-            st.experimental_rerun()
+        st.button(
+            "Example 1: Critical Bug",
+            key="example_1",
+            on_click=set_example,
+            args=(
+                "Application crashes on startup",
+                "The application crashes immediately after launching. Error message: 'Segmentation fault'. This affects all users on Linux.",
+            ),
+        )
+        st.button(
+            "Example 2: Feature Request",
+            key="example_2",
+            on_click=set_example,
+            args=(
+                "Add dark mode support",
+                "It would be great to have a dark mode option for better usability at night.",
+            ),
+        )
+        st.button(
+            "Example 3: Documentation",
+            key="example_3",
+            on_click=set_example,
+            args=(
+                "Update installation instructions",
+                "The installation guide is outdated. Please update it to reflect the new setup process.",
+            ),
+        )
+
+    title = st.text_input("Issue Title", placeholder="e.g., Bug: Application crashes on startup", key='title')
+    body = st.text_area("Issue Body", placeholder="Describe the issue in detail...", height=150, key='body')
     
     # Predict button
     if st.button("Predict", type="primary"):
