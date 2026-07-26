@@ -52,6 +52,9 @@ data/raw/*.csv
 data/raw/*.json
 data/processed/*.csv
 
+github_issues_dataset/
+data/
+
 # Logs
 *.log
 logs/
